@@ -1,0 +1,42 @@
+new_load_kW,lowest_V,lowest_at,max_reg_steps,substation_loading_pct,ok,problem
+0,0.9608,611.C,9,79.3,True,
+100,0.9587,611.C,9,81.6,True,
+200,0.9565,611.C,9,83.9,True,
+300,0.9616,611.C,10,86.1,True,
+400,0.9594,611.C,10,88.4,True,
+500,0.9572,611.C,10,90.7,True,
+600,0.955,611.C,10,93.0,True,
+700,0.9526,675.C,10,95.3,True,
+800,0.9572,675.C,11,97.7,True,
+900,0.9547,675.C,11,100.0,False,substation transformer overloaded
+1000,0.952,675.C,11,102.4,False,substation transformer overloaded
+1100,0.9494,675.C,11,104.7,False,low voltage at 675.C; substation transformer overloaded
+1200,0.9473,675.C,11,107.0,False,low voltage at 675.C; substation transformer overloaded
+1300,0.9452,675.C,11,109.3,False,low voltage at 675.C; substation transformer overloaded
+1400,0.9431,675.C,12,111.6,False,low voltage at 675.C; substation transformer overloaded
+1500,0.9467,675.C,12,114.1,False,low voltage at 675.C; substation transformer overloaded
+1600,0.9446,675.C,12,116.4,False,low voltage at 675.C; substation transformer overloaded
+1700,0.9425,675.C,12,118.7,False,low voltage at 675.C; substation transformer overloaded
+1800,0.9404,675.C,12,121.0,False,low voltage at 675.C; substation transformer overloaded
+1900,0.9384,675.C,12,123.2,False,low voltage at 675.C; substation transformer overloaded
+2000,0.9363,675.C,13,125.7,False,low voltage at 675.C; substation transformer overloaded
+2100,0.9398,675.C,13,128.2,False,low voltage at 675.C; substation transformer overloaded
+2200,0.9378,675.C,13,130.4,False,low voltage at 675.C; substation transformer overloaded
+2300,0.9358,675.C,13,132.5,False,low voltage at 675.C; substation transformer overloaded
+2400,0.9338,675.C,13,134.7,False,low voltage at 675.C; substation transformer overloaded
+2500,0.9319,675.C,13,136.9,False,low voltage at 675.C; substation transformer overloaded
+2600,0.9354,675.C,14,139.8,False,low voltage at 675.C; substation transformer overloaded
+2700,0.9332,675.C,14,142.0,False,low voltage at 675.C; substation transformer overloaded
+2800,0.9312,675.C,14,144.1,False,low voltage at 675.C; substation transformer overloaded
+2900,0.9293,675.C,14,146.3,False,low voltage at 675.C; substation transformer overloaded
+3000,0.9273,675.C,14,148.4,False,low voltage at 675.C; substation transformer overloaded
+3100,0.9255,675.C,14,150.6,False,low voltage at 675.C; substation transformer overloaded
+3200,0.9289,675.C,15,153.7,False,low voltage at 675.C; substation transformer overloaded
+3300,0.927,675.C,15,155.8,False,low voltage at 675.C; substation transformer overloaded
+3400,0.9248,675.C,15,157.9,False,low voltage at 675.C; substation transformer overloaded
+3500,0.923,675.C,15,160.0,False,low voltage at 675.C; substation transformer overloaded
+3600,0.9211,675.C,15,162.1,False,low voltage at 675.C; substation transformer overloaded
+3700,0.9193,675.C,15,164.2,False,low voltage at 675.C; substation transformer overloaded
+3800,0.9226,675.C,16,167.5,False,low voltage at 675.C; regulator out of taps; substation transformer overloaded
+3900,0.9205,675.C,16,169.5,False,low voltage at 675.C; regulator out of taps; substation transformer overloaded
+4000,0.9187,675.C,16,171.6,False,low voltage at 675.C; regulator out of taps; substation transformer overloaded

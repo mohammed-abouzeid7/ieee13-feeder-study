@@ -1,0 +1,106 @@
+OPENDSS STARTER KIT - IEEE 13-node feeder
+==========================================
+What this is: a small real distribution feeder (4.16 kV, 13 buses, regulators,
+capacitors, unbalanced loads) plus one Python script that runs the same studies
+a utility planner runs in CYME. You don't need to know OpenDSS to start.
+
+FILES
+  IEEE13Nodeckt.dss      the feeder (OpenDSS's own text format - open it in
+                         Notepad, it's readable: lines, loads, regulators, caps)
+  IEEE13Node_BusXY.csv   bus map coordinates
+  run_feeder_study.py    the study script
+  README.txt             this file
+
+
+SETUP (one time, about 10 minutes, Windows)
+-------------------------------------------
+1. Install Python 3.12 from https://www.python.org/downloads/
+   On the first installer screen, TICK "Add python.exe to PATH", then Install.
+
+2. Unzip this kit somewhere easy, e.g.  Documents\opendss_kit
+
+3. Open that folder in File Explorer. Click the address bar, type  cmd
+   and press Enter. A black window opens already inside the folder.
+
+4. In that window type:
+       py -m pip install opendssdirect.py matplotlib pandas
+   (This installs the OpenDSS engine itself - no separate OpenDSS download needed.)
+
+   Mac instead: open Terminal in the folder and use  python3 -m pip install ...
+
+
+RUN IT
+------
+5. In the same window:
+       py run_feeder_study.py
+
+   Takes a few seconds. It prints results and makes a "results" folder with:
+     1_voltage_profile.png     voltage at every bus, 3 cases, all 3 phases
+     2_fault_currents.png      short-circuit current at every bus
+     3_new_load_capacity.png   how much new load bus 675 can take
+     + CSV tables of everything (open in Excel)
+
+   FIRST THING TO LOOK AT: "STUDY 0" in the printout. It compares your model
+   against the official IEEE published voltages. It should say PASS. If it
+   does, your setup is right and every other number can be trusted.
+
+
+WHAT EACH STUDY MEANS (and what to say about it in an interview)
+----------------------------------------------------------------
+Study 1 - Load flow, base case
+  Voltage at each bus and phase, in per unit (1.00 = nominal). Phase B runs
+  high (a few buses sit just over 1.05) and phase C runs low, because the
+  loads are unbalanced - a real feeder problem. Talking point: "unbalanced loading shifts phase voltages, so you
+  study each phase, not just the average."
+
+Study 2 - What-ifs
+  Regulators off: the far-end buses on phases A and C (around 671, 675, 611,
+  652) drop below 0.95 pu. That
+  shows WHY utilities put voltage regulators on long feeders.
+  Capacitors off: the feeder draws more kvar from the substation, losses go up
+  and the regulators have to tap higher to hold voltage. That shows what capacitor banks are for (reactive support).
+
+Study 3 - Fault currents
+  A bolted short at each bus. Fault current is biggest near the substation
+  and falls with distance (more line impedance in the way). Protection
+  engineers size breakers and set reclosers/fuses from exactly this table.
+
+Study 4 - New large load (EV hub or small data centre) at bus 675
+  Adds load in 100 kW steps until something breaks: voltage under 0.95 pu,
+  a regulator runs out of taps, or the 5 MVA substation transformer goes over
+  100%. The last OK step is the "hosting capacity" for that load. This is your
+  link to data-centre power - it's the first question a utility asks when a
+  big customer wants to connect.
+
+
+MAKE IT YOURS (do at least two - this is what turns it into a project)
+----------------------------------------------------------------------
+Open run_feeder_study.py in Notepad (or VS Code). The SETTINGS block at the top
+has the easy knobs:
+  a) NEW_LOAD_BUS = "671" or "632" - which bus can take the most? Why?
+     (closer to the substation = less impedance = more room)
+  b) NEW_LOAD_PF = 0.90 - how much does poor power factor cost you?
+  c) In IEEE13Nodeckt.dss, change Cap1's kVAR=600 to 900 or 300 and re-run.
+     Does the new-load limit move?
+  d) Find the fix: once Study 4 hits low voltage, what single change (a new
+     capacitor? moving the load?) buys the most extra kW? That's a real
+     planning answer, and a great resume bullet.
+
+Resume line once done (edit the numbers to yours):
+  "Modelled the IEEE 13-node distribution feeder in OpenDSS/Python; ran load
+   flow, fault and hosting-capacity studies and showed a new 3-phase load at
+   bus 675 was limited to ~X kW by low voltage on phase C."
+
+
+IF SOMETHING GOES WRONG
+-----------------------
+"py is not recognized"      -> Python isn't on PATH. Re-run the installer,
+                               choose Modify, tick "Add to PATH".
+"Missing package"           -> redo step 4.
+Any red error text          -> screenshot the whole black window and send it
+                               to Claude.
+Study 0 says CHECK          -> also send a screenshot.
+
+Model source: IEEE 13 Node Test Feeder as distributed with EPRI OpenDSS
+(dss-extensions/electricdss-tst). Per-unit band 0.95-1.05 is the usual
+planning range; Ontario utilities work to CSA C235, which is similar.
