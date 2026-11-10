@@ -31,7 +31,7 @@ The limits used in Study 4:
 | Case | New load location | Power factor | Extra kvar | Hosting capacity | What limited it |
 |------|-------------------|--------------|------------|------------------|-----------------|
 | A | Bus 675 | 0.98 | none (Cap1 600 kvar) | ~800 kW | Substation transformer overload |
-| B | Bus 632 | 0.98 | none | ~900 kW | TODO |
+| B | Bus 632 | 0.98 | none | ~900 kW | Substation transformer overload |
 | C | Bus 675 | 0.90 | none | ~700 kW | Low voltage, bus 675 phase C |
 | D | Bus 675 | 0.90 | +300 kvar, all 3 phases (Cap1 to 900) | ~900 kW | Substation transformer overload |
 | E1 | Bus 675 | 0.90 | +100 kvar, phase C only | ~825 kW | Substation transformer overload |
